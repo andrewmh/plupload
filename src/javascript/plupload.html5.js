@@ -530,7 +530,11 @@
 								boundary = '----pluploadboundary' + plupload.guid(), formData, dashdash = '--', crlf = '\r\n', multipartBlob = '';
 								
 							xhr = new XMLHttpRequest;
-															
+
+							plupload.each(up.settings.xhrFields, function(value, name) {
+								xhr[name] = value;
+							});
+
 							// Do we have upload progress support
 							if (xhr.upload) {
 								xhr.upload.onprogress = function(e) {
