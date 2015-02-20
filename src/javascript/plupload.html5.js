@@ -682,7 +682,8 @@
 							
 							xhr.open("post", url, true);
 							
-							xhr.setRequestHeader('Content-Type', 'application/octet-stream'); // Binary stream header
+							// allows sending custom content type with the document instead of application/octet-stream
+							xhr.setRequestHeader('Content-Type', up.settings.customContentType || 'application/octet-stream'); // Binary stream header
 								
 							// Set custom headers
 							plupload.each(up.settings.headers, function(value, name) {
