@@ -531,9 +531,11 @@
 								
 							xhr = new XMLHttpRequest;
 
-							plupload.each(up.settings.xhrFields, function(value, name) {
-								xhr[name] = value;
-							});
+							var afterOpen = function() {
+								plupload.each(up.settings.xhrFields, function(value, name) {
+									xhr[name] = value;
+								});
+							};
 
 							// Do we have upload progress support
 							if (xhr.upload) {
@@ -614,6 +616,8 @@
 								
 								xhr.open("post", url, true);
 								
+								afterOpen();
+
 								// Set custom headers
 								plupload.each(up.settings.headers, function(value, name) {
 									xhr.setRequestHeader(name, value);
@@ -682,6 +686,8 @@
 							
 							xhr.open("post", url, true);
 							
+							afterOpen();
+
 							// allows sending custom content type with the document instead of application/octet-stream
 							xhr.setRequestHeader('Content-Type', up.settings.customContentType || 'application/octet-stream'); // Binary stream header
 								
